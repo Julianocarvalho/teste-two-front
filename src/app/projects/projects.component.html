@@ -1,0 +1,46 @@
+<h1 class="page-header">Painel de Controle</h1>
+
+<div class="well">
+    <form (ngSubmit)="createProject()">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" class="form-control" [(ngModel)]="newProject.name" name="name" placeholder="Digite aqui um novo Projeto">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success" type="submit">
+                    Criar Novo Projeto
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<h2>Projetos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col-md-7">Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of projects">
+            <td>{{project.name}}</td>
+            <td>
+                <a [routerLink]="['/projects', project.id,'tasks']" class="btn btn-success">
+                    <span class="glyphicon glyphicon-check"></span>
+                    Selecionar
+                </a>
+                <button class="btn btn-info" [routerLink]="['/projects', project.id]">
+                    <span class="
+                    glyphicon glyphicon-info-sign"></span>
+                    Detalhes
+                </button>
+                <button class="btn btn-danger" (click)="deleteProject(project)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
